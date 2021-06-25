@@ -14,7 +14,9 @@ Role Variables
 --------------
 
 You must change region values before execute installation task, see the Region column in Systems Manager service endpoints in the Amazon Web Services General Reference (https://docs.aws.amazon.com/general/latest/gr/ssm.html#ssm_region).
+
 Example:
+
   package: https://s3.<your_region>.amazonaws.com/amazon-ssm-<your_region>/latest/linux_amd64
 
 Dependencies
@@ -30,6 +32,11 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: aws_servers
       roles:
          - ansible-amazon-ssm-agent
+
+License
+-------
+
+GPL-3.0 License
 
 Author Information
 ------------------
