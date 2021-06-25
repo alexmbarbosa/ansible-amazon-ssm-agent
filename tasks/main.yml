@@ -1,0 +1,33 @@
+---
+# tasks file for aws-ssm-agent
+#
+# -- Update SO
+- name: update all packages
+  yum:
+    name: '*'
+    state: latest
+  tags: [ yum_update_all ]
+
+#-- Getting and Installing ssm-agent package (https://s3.region.amazonaws.com/amazon-ssm-region/latest/linux_amd64/amazon-ssm-agent.rpm)
+- name: install amazon-ssm-agent
+  yum:
+    name: "{{ package }}"
+  tags: [ install_amazon_ssm_agent ]
+
+#-- Check current daemon status
+- name: checking service status
+  command: systemctl status "{{ service }}"
+  register: result
+  ignore_errors: yes
+- name: showing report
+  debug:
+    var: result
+  tags: [ status_amazon_ssm_agent ]
+
+#-- start codedeploy daemon
+- name: start amazon-ssm-agent
+  ansible.builtin.service:
+    name: amazon-ssm-agent
+    state: started
+    enabled: yes
+  tags: [ start_amazon_ssm_agent ]
