@@ -1,4 +1,2 @@
 ---
 # vars file for aws-ssm-agent
-package: https://s3.us-east-1.amazonaws.com/amazon-ssm-us-east-1/latest/linux_amd64/amazon-ssm-agent.rpm
-service: amazon-ssm-agent
